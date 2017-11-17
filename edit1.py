@@ -1,4 +1,6 @@
-#a game of reversi (original)
+"""
+change loop index to something more recognizable than 'i's or 'j's
+"""
 
 import sys
 
@@ -24,10 +26,10 @@ class Board(object):
 
   def possibleChoice(self, color):
     possibility = 0 #number of choices of places where possible to put stone
-    for i in range(self.row):
-      for j in range(self.col):
-        if self.board[i][j]==self.blank:
-          if self.countUp(i,j,color)>0:
+    for ri in range(self.row):
+      for ci in range(self.col):
+        if self.board[ri][ci]==self.blank:
+          if self.countUp(ri,ci,color)>0:
             possibility+=1
     return possibility
 
@@ -35,11 +37,11 @@ class Board(object):
     print("------------------")
     cnt_player = 0
     cnt_ai = 0
-    for i in range(self.row):
-      for j in range(self.col):
-        if self.board[i][j]==player_color:
+    for ri in range(self.row):
+      for ci in range(self.col):
+        if self.board[ri][ci]==player_color:
           cnt_player+=1
-        elif self.board[i][j]==ai_color:
+        elif self.board[ri][ci]==ai_color:
           cnt_ai+=1
     print("Player (Black): %d" % cnt_player)
     print("AI     (White): %d" % cnt_ai)
