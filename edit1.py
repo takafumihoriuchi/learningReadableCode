@@ -1,3 +1,4 @@
+# coding=utf-8
 import sys
 
 
@@ -5,8 +6,8 @@ class Board(object):
     board = []
 
     def __init__(self, row, col, blank):
-        self.row = row
-        self.col = col
+        self.row   = row
+        self.col   = col
         self.blank = blank
 
     def createBoard(self):
@@ -31,7 +32,8 @@ class Board(object):
                         possibility += 1
         return possibility
 
-    def gameSet(self, player_color, ai_color):  # print out results
+    # print out results
+    def gameSet(self, player_color, ai_color):
         print("------------------")
         cnt_player = 0
         cnt_ai = 0
@@ -127,7 +129,7 @@ class Board(object):
 
 class Player(object):
     def __init__(self, color, my_board):
-        self.color = color
+        self.color    = color
         self.my_board = my_board
 
     def selectPoint(self):
@@ -150,6 +152,18 @@ class Player(object):
             print("invalid input (already taken)")
             self.selectPoint()
         self.flipStone()
+
+    """
+    # ヘルパーメソッドを使用して、繰り返しを避ける。＝＞ コードが美しくなる。
+    def flipStoneHelper(self, out_range_s, out_range_e, ...):
+        for i in range(self.row + 1, my_board.row):
+            if my_board.board[i][self.col] == self.color:
+                for ii in range(self.row + 1, i):
+                    my_board.board[ii][self.col] = self.color
+                break
+            elif my_board.board[i][self.col] == my_board.blank:
+                return
+    """
 
     def flipStone(self):
         # down
@@ -224,7 +238,7 @@ class Player(object):
 
 class ArtificialIntelligence(Player):
     def aiCalculate(self):
-        # check the four-corners first
+        # check the four-corners
         max_count = 0
         for i in range(2):
             for j in range(2):
@@ -237,8 +251,7 @@ class ArtificialIntelligence(Player):
         if max_count > 0:
             self.putStone()
         else:
-            # select point to get highest return in that round
-            # (select point that appears first)
+            # select point to get highest return in that turn
             max_count = 0
             for i in range(my_board.row):
                 for j in range(my_board.col):
@@ -246,18 +259,15 @@ class ArtificialIntelligence(Player):
                         count = my_board.countUp(i, j, self.color)
                         if count > max_count:
                             max_count = count
-                            self.row = i
-                            self.col = j
+                            self.row  = i
+                            self.col  = j
             if max_count > 0:
                 self.putStone()
 
 
-# initialize board with "O" : open space
-my_board = Board(8, 8, "O")
-# set my_player.color to "B" : black
-my_player = Player("B", my_board)
-# set my_ai.color to "W" : white
-my_ai = ArtificialIntelligence("W", my_board)
+my_board = Board(8, 8, "O")                     # "O" : open space
+my_player = Player("B", my_board)               # "B" : black
+my_ai = ArtificialIntelligence("W", my_board)   # "W" : white
 
 my_board.createBoard()
 my_board.setBoard(4, 3, my_player.color)
@@ -266,12 +276,14 @@ my_board.setBoard(3, 3, my_ai.color)
 my_board.setBoard(4, 4, my_ai.color)
 
 while True:
+
     if my_board.possibleChoice(my_player.color) > 0:
         my_board.printBoard()
         my_player.selectPoint()
     else:
         if not my_board.possibleChoice(my_ai.color) > 0:
             my_board.gameSet(my_player.color, my_ai.color)
+
     if my_board.possibleChoice(my_ai.color) > 0:
         my_board.printBoard()
         my_ai.aiCalculate()
@@ -281,6 +293,8 @@ while True:
 
 
 """
+A game of Othello
+
 change loop index to something more recognizable than 'i's or 'j's,
 unless those iterator names are meant to indicate the function of loops.
 (use 'i' or 'j' if the code for the loop is short)
@@ -295,4 +309,8 @@ class member variables  : offset_
 JavaScript: The Good Parts by Douglas Crockford
 Constructor : DatePicker()
 functions   : pageHeight()
+
+コードを美しくする
+- 繰り返しを避ける => ヘルパーメソッドを追加する
+- 縦整列を整えるために、空白を入れて調整する
 """
