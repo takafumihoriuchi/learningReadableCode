@@ -228,8 +228,8 @@ class ArtificialIntelligence(Player):
         max_count = 0
         for i in range(2):
             for j in range(2):
-                if my_board.board[i * (my_board.row - 1)][j * (my_board.col - 1)] == my_board.blank:
-                    count = my_board.countUp(i * (my_board.row - 1), j * (my_board.col - 1), self.color)
+                if my_board.board[i * (my_board.row - 1)][j * (my_board.col - 1)] == my_board.blank:  # noqa
+                    count = my_board.countUp(i * (my_board.row - 1), j * (my_board.col - 1), self.color)  # noqa
                     if count > max_count:
                         max_count = count
                         self.row = i * (my_board.row - 1)
@@ -252,9 +252,13 @@ class ArtificialIntelligence(Player):
                 self.putStone()
 
 
-my_board = Board(8, 8, "O")  # initialize board with "O" : open space
-my_player = Player("B", my_board)  # set my_player.color to "B" : black
-my_ai = ArtificialIntelligence("W", my_board)  # set my_ai.color to "W" : white
+# initialize board with "O" : open space
+my_board = Board(8, 8, "O")
+# set my_player.color to "B" : black
+my_player = Player("B", my_board)
+# set my_ai.color to "W" : white
+my_ai = ArtificialIntelligence("W", my_board)
+
 my_board.createBoard()
 my_board.setBoard(4, 3, my_player.color)
 my_board.setBoard(3, 4, my_player.color)
@@ -277,5 +281,18 @@ while True:
 
 
 """
-change loop index to something more recognizable than 'i's or 'j's
+change loop index to something more recognizable than 'i's or 'j's,
+unless those iterator names are meant to indicate the function of loops.
+(use 'i' or 'j' if the code for the loop is short)
+
+Google Opensource formatting
+class names             : CamelCase
+variable names          : lower_separated
+constant names          : kConstantName
+macro names             : MACRO_NAME
+class member variables  : offset_
+
+JavaScript: The Good Parts by Douglas Crockford
+Constructor : DatePicker()
+functions   : pageHeight()
 """
