@@ -56,6 +56,7 @@ class Board(object):
 
     def countUp(self, row, col, color):
         count = 0
+        # Hack: あまりキレイじゃない解決策。簡潔にまとめたい。
         # down
         for i in range(row + 1, self.row):
             if self.board[i][col] == color:
@@ -154,7 +155,8 @@ class Player(object):
         self.flipStone()
 
     """
-    # ヘルパーメソッドを使用して、繰り返しを避ける。＝＞ コードが美しくなる。
+    # TODO: あとで手をつける
+    # ヘルパーメソッドを使用して、助長な繰り返しを避ける。
     def flipStoneHelper(self, out_range_s, out_range_e, ...):
         for i in range(self.row + 1, my_board.row):
             if my_board.board[i][self.col] == self.color:
@@ -166,6 +168,7 @@ class Player(object):
     """
 
     def flipStone(self):
+        # Hack: あまりキレイじゃない解決策。簡潔にまとめたい。
         # down
         for i in range(self.row + 1, my_board.row):
             if my_board.board[i][self.col] == self.color:
@@ -269,6 +272,7 @@ my_board = Board(8, 8, "O")                     # "O" : open space
 my_player = Player("B", my_board)               # "B" : black
 my_ai = ArtificialIntelligence("W", my_board)   # "W" : white
 
+# オセロ盤の初期設定
 my_board.createBoard()
 my_board.setBoard(4, 3, my_player.color)
 my_board.setBoard(3, 4, my_player.color)
@@ -279,7 +283,7 @@ while True:
 
     if my_board.possibleChoice(my_player.color) > 0:
         my_board.printBoard()
-        my_player.selectPoint()
+        my_player.selectPoint()                 # ここでプレイヤーの入力を待つ
     else:
         if not my_board.possibleChoice(my_ai.color) > 0:
             my_board.gameSet(my_player.color, my_ai.color)
@@ -313,4 +317,17 @@ functions   : pageHeight()
 コードを美しくする
 - 繰り返しを避ける => ヘルパーメソッドを追加する
 - 縦整列を整えるために、空白を入れて調整する
-"""
+
+コメント
+・コメントするべきでは「ない」こと：
+    コードからすぐに抽出できること
+    ひどいコードを補う形の「補助的な」コメント。このようなときはコードを修正する。
+・記録するべき自分の考え：
+    DVDでいう「監督コメンタリー」のように、なぜこのようなコードになったのか
+    コードの欠陥をTODO:やXXX:などの記法を使って示す
+    定数の値にまつわる「背景」
+・読み手の立場で考える：
+    読み手の常識からかけ離れていることに関するコメント
+    ファイルやクラスの全体像を示す
+
+"
