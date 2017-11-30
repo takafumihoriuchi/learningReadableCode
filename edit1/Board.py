@@ -11,6 +11,8 @@ class Board(object):
         for i in range(self.row):
             self.board.append([self.blank] * self.col)
 
+    # used only in the set up process of the beginning of game
+    # TODO: can be used thrugh out the game
     def setBoard(self, set_row, set_col, color):
         self.board[set_row][set_col] = color
 
@@ -29,7 +31,7 @@ class Board(object):
                         possibility += 1
         return possibility
 
-    # print out results
+    # print out results and end process
     def gameSet(self, player_color, ai_color):
         print("------------------")
         cnt_player = 0
@@ -53,7 +55,7 @@ class Board(object):
 
     def countUp(self, row, col, color):
         count = 0
-        # Hack: あまりキレイじゃない解決策。簡潔にまとめたい。
+        # Hack: code not simple, modify code by using helper methods
         # down
         for i in range(row + 1, self.row):
             if self.board[i][col] == color:

@@ -16,7 +16,7 @@ class ArtificialIntelligence(Player):
         if max_count > 0:
             self.putStone()
         else:
-            # select point to get highest return in that turn
+            # select to get highest return in that turn
             max_count = 0
             for i in range(self.my_board.row):
                 for j in range(self.my_board.col):

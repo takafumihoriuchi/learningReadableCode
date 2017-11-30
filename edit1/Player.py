@@ -27,8 +27,7 @@ class Player(object):
         self.flipStone()
 
     """
-    # TODO: あとで手をつける
-    # ヘルパーメソッドを使用して、助長な繰り返しを避ける。
+    # TODO: in the middle of implementing a helper code for 'flipStone()'
     def flipStoneHelper(self, out_range_s, out_range_e, ...):
         for i in range(self.row + 1, my_board.row):
             if my_board.board[i][self.col] == self.color:
@@ -40,7 +39,7 @@ class Player(object):
     """
 
     def flipStone(self):
-        # Hack: あまりキレイじゃない解決策。簡潔にまとめたい。
+        # Hack: code not simple, modify code by using helper methods
         # down
         for i in range(self.row + 1, self.my_board.row):
             if self.my_board.board[i][self.col] == self.color:

@@ -8,7 +8,7 @@ my_board = Board(8, 8, "O")                     # "O" : open space
 my_player = Player("B", my_board)               # "B" : black
 my_ai = ArtificialIntelligence("W", my_board)   # "W" : white
 
-# オセロ盤の初期設定
+# set up board before starting
 my_board.createBoard()
 my_board.setBoard(4, 3, my_player.color)
 my_board.setBoard(3, 4, my_player.color)
@@ -19,7 +19,7 @@ while True:
 
     if my_board.possibleChoice(my_player.color) > 0:
         my_board.printBoard()
-        my_player.selectPoint()                 # ここでプレイヤーの入力を待つ
+        my_player.selectPoint()  # wait for player's input
     else:
         if not my_board.possibleChoice(my_ai.color) > 0:
             my_board.gameSet(my_player.color, my_ai.color)
