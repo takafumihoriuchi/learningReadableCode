@@ -1,6 +1,7 @@
 # coding=utf-8
 from Player import Player
 
+
 class ArtificialIntelligence(Player):
     def aiCalculate(self):
         # check the four-corners
@@ -24,7 +25,7 @@ class ArtificialIntelligence(Player):
                         count = self.my_board.countUp(i, j, self.color)
                         if count > max_count:
                             max_count = count
-                            self.row  = i
-                            self.col  = j
+                            self.row = i
+                            self.col = j
             if max_count > 0:
                 self.putStone()

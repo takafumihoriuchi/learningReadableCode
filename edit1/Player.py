@@ -1,5 +1,4 @@
 # coding=utf-8
-
 class Player(object):
     def __init__(self, color, my_board):
         self.color    = color

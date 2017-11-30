@@ -1,5 +1,4 @@
 # coding=utf-8
-import sys
 from Board import Board
 from Player import Player
 from ArtificialIntelligence import ArtificialIntelligence
