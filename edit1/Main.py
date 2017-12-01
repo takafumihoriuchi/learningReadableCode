@@ -3,6 +3,7 @@ from board import Board
 from player import Player
 from artificial_intelligence import ArtificialIntelligence
 
+
 def main():
     my_board = Board(8, 8, "O")                     # "O" : open space
     my_player = Player("B", my_board)               # "B" : black
