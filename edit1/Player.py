@@ -4,35 +4,35 @@ class Player(object):
         self.color    = color  # noqa
         self.my_board = my_board
 
-    def selectPoint(self):
+    def select_point(self):
         self.row = int(input("row: "))
         self.col = int(input("col: "))
-        self.putStone()
+        self.put_stone()
 
-    def putStone(self):
+    def put_stone(self):
         # re-input : out of range
         if self.row not in range(self.my_board.row)\
          or self.col not in range(self.my_board.col):
             print("invalid input (out of range)")
-            self.selectPoint()
+            self.select_point()
             return
         # re-input : already taken
         if self.my_board.board[self.row][self.col] != self.my_board.blank:
             print("invalid input (already taken)")
-            self.selectPoint()
+            self.select_point()
             return
         # re-input : open space, can't flip any of opponent's stone
-        if self.my_board.countUp(self.row, self.col, self.color) == 0:
+        if self.my_board.count_up(self.row, self.col, self.color) == 0:
             print("invalid input (unflippable)")
-            self.selectPoint()
+            self.select_point()
             return
         # valid input
         self.my_board.board[self.row][self.col] = self.color
-        self.flipStone()
+        self.flip_stone()
 
     """
-    # TODO: in the middle of implementing a helper code for 'flipStone()'
-    def flipStoneHelper(self, out_range_s, out_range_e, ...):
+    # TODO: in the middle of implementing a helper code for 'flip_stone()'
+    def flip_stone_helper(self, out_range_s, out_range_e, ...):
         for i in range(self.row + 1, my_board.row):
             if my_board.board[i][self.col] == self.color:
                 for ii in range(self.row + 1, i):
@@ -42,7 +42,7 @@ class Player(object):
                 return
     """
 
-    def flipStone(self):
+    def flip_stone(self):
         # Hack: code not simple, modify code by using helper methods
         # down
         for i in range(self.row + 1, self.my_board.row):

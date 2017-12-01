@@ -10,32 +10,32 @@ class Board(object):
         self.col   = col  # noqa
         self.blank = blank
 
-    def createBoard(self):
+    def create_board(self):
         for i in range(self.row):
             self.board.append([self.blank] * self.col)
 
     # used only in the set up process of the beginning of game
     # TODO: can be used thrugh out the game
-    def setBoard(self, set_row, set_col, color):
+    def set_board(self, set_row, set_col, color):
         self.board[set_row][set_col] = color
 
-    def printBoard(self):
+    def print_board(self):
         print ""
         for i in self.board:
             print("  ".join(i))
         print ""
 
-    def possibleChoice(self, color):
+    def possible_choice(self, color):
         possibility = 0
         for ri in range(self.row):
             for ci in range(self.col):
                 if self.board[ri][ci] == self.blank:
-                    if self.countUp(ri, ci, color) > 0:
+                    if self.count_up(ri, ci, color) > 0:
                         possibility += 1
         return possibility
 
     # print out results and end process
-    def gameSet(self, player_color, ai_color):
+    def game_set(self, player_color, ai_color):
         print("------------------")
         cnt_player = 0
         cnt_ai = 0
@@ -56,7 +56,7 @@ class Board(object):
         print("------------------")
         sys.exit()
 
-    def countUp(self, row, col, color):
+    def count_up(self, row, col, color):
         count = 0
         # Hack: code not simple, modify code by using helper methods
         # down
