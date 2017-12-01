@@ -14,7 +14,7 @@ class Player(object):
          or self.col not in range(self.my_board.col):
             print("invalid input (out of range)")
             self.selectPoint()
-        elif self.my_board.board[self.row][self.col] == self.my_board.blank:
+        if self.my_board.board[self.row][self.col] == self.my_board.blank:
             if self.my_board.countUp(self.row, self.col, self.color) > 0:
                 self.my_board.board[self.row][self.col] = self.color
             else:

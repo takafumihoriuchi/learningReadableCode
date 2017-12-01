@@ -1,12 +1,12 @@
 # coding=utf-8
-from Player import Player
+from player import Player
 
 
 class ArtificialIntelligence(Player):
     def aiCalculate(self):
         # check the four-corners
         max_count = 0
-        for i in range(2):
+        for i in range(2):  # ここはネストが深いので修正できる
             for j in range(2):
                 if self.my_board.board[i * (self.my_board.row - 1)][j * (self.my_board.col - 1)] == self.my_board.blank:  # noqa
                     count = self.my_board.countUp(i * (self.my_board.row - 1), j * (self.my_board.col - 1), self.color)  # noqa
