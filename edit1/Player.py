@@ -1,7 +1,7 @@
 # coding=utf-8
 class Player(object):
     def __init__(self, color, my_board):
-        self.color    = color
+        self.color    = color  # noqa
         self.my_board = my_board
 
     def selectPoint(self):
@@ -29,7 +29,6 @@ class Player(object):
         # valid input
         self.my_board.board[self.row][self.col] = self.color
         self.flipStone()
-        
 
     """
     # TODO: in the middle of implementing a helper code for 'flipStone()'

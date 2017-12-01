@@ -6,8 +6,8 @@ class Board(object):
     board = []
 
     def __init__(self, row, col, blank):
-        self.row   = row
-        self.col   = col
+        self.row   = row  # noqa
+        self.col   = col  # noqa
         self.blank = blank
 
     def createBoard(self):
