@@ -10,20 +10,26 @@ class Player(object):
         self.putStone()
 
     def putStone(self):
+        # re-input : out of range
         if self.row not in range(self.my_board.row)\
          or self.col not in range(self.my_board.col):
             print("invalid input (out of range)")
             self.selectPoint()
-        if self.my_board.board[self.row][self.col] == self.my_board.blank:
-            if self.my_board.countUp(self.row, self.col, self.color) > 0:
-                self.my_board.board[self.row][self.col] = self.color
-            else:
-                print("invalid input (unflippable)")
-                self.selectPoint()
-        else:
+            return
+        # re-input : already taken
+        if self.my_board.board[self.row][self.col] != self.my_board.blank:
             print("invalid input (already taken)")
             self.selectPoint()
+            return
+        # re-input : open space, can't flip any of opponent's stone
+        if self.my_board.countUp(self.row, self.col, self.color) == 0:
+            print("invalid input (unflippable)")
+            self.selectPoint()
+            return
+        # valid input
+        self.my_board.board[self.row][self.col] = self.color
         self.flipStone()
+        
 
     """
     # TODO: in the middle of implementing a helper code for 'flipStone()'
