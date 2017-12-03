@@ -32,14 +32,6 @@ class Player(object):
 
     """
     # TODO: in the middle of implementing a helper code for 'flip_stone()'
-    def flip_stone_helper(self, out_range_s, out_range_e, ...):
-        for i in range(self.row + 1, my_board.row):
-            if my_board.board[i][self.col] == self.color:
-                for ii in range(self.row + 1, i):
-                    my_board.board[ii][self.col] = self.color
-                break
-            elif my_board.board[i][self.col] == my_board.blank:
-                return
     """
 
     def flip_stone(self):
